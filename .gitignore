@@ -1,0 +1,25 @@
+# Python
+venv/
+__pycache__/
+*.py[cod]
+.python-version
+
+# Environment
+.env
+
+# IDE
+.vscode/
+
+# Arquivos gerados
+zips/
+*.pdf
+*.zip
+
+# Testes
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Sistema
+.DS_Store
+Thumbs.db
