@@ -5,14 +5,14 @@ from typing import Optional
 from ..utils.create_directory import create_directory
 from ..utils.validate_url import validate_url
 from ..utils.generate_zip_name import generate_zip_name
-from ..core.fetch_page_content import fetch_page_content
-from ..core.extract_pdf_links import extract_pdf_links
+from .fetch_page_content import fetch_page_content
+from .extract_pdf_links import extract_pdf_links
 
 def download_pdfs_and_zip(url: Optional[str] = None, output_zip: Optional[str] = None) -> Optional[str]:
     """Função principal do módulo"""
     try:
         base_dir = os.path.abspath(os.path.dirname(__file__))
-        zip_dir = os.path.join(base_dir, '../../zips')
+        zip_dir = os.path.join(base_dir, '../../data/raw')
         create_directory(zip_dir)
 
         target_url = url or os.getenv('TARGET_URL')
