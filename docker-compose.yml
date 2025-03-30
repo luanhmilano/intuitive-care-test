@@ -1,0 +1,32 @@
+# docker-compose.yml
+version: '3.8'
+services:
+  app:
+    build: .
+    container_name: intuitive-care-app
+    volumes:
+      - .:/app
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: 1ntu1t1v3
+      DB_NAME: intuitive_care-db
+    depends_on:
+      - db
+    command: ["sleep", "infinity"]
+
+  db:
+    image: mysql:latest
+    container_name: mysql-intuitive_care
+    restart: always
+    environment:
+      MYSQL_DATABASE: intuitive_care-db
+      MYSQL_ROOT_PASSWORD: 1ntu1t1v3
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-volume:/var/lib/mysql
+      - ./data:/app/data
+
+volumes:
+  mysql-volume:
