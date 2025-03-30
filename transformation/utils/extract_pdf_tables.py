@@ -7,13 +7,9 @@ def extract_pdf_tables(pdf_path: str) -> List[pd.DataFrame]:
     try:
         return tabula.read_pdf(
             pdf_path,
-            pages="all",
+            pages='3-181',
             multiple_tables=True,
             lattice=True,
-            area=[70, 0, 750, 590],
-            pandas_options={'header': None},
-            stream=True,
-            encoding='utf-8',
             silent=True
         )
     except Exception as e:
