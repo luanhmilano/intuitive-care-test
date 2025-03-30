@@ -2,6 +2,8 @@ import pandas as pd
 
 def clean_column_names(df: pd.DataFrame) -> pd.DataFrame:
     """Padroniza nomes das colunas removendo caracteres especiais"""
+    df.columns = df.columns.astype(str)
+    
     df.columns = (
         df.columns.str.strip()
         .str.replace('\r', ' ')
@@ -11,10 +13,12 @@ def clean_column_names(df: pd.DataFrame) -> pd.DataFrame:
         .str.upper()
     )
     return df.rename(columns={
-        'RN_ALTERACAO': 'RN',
+        'RN_ALTERA_O': 'RN',
+        'VIG_NCIA': 'VIGÊNCIA',
         'UNNAMED_0': 'ID',
         'OD': 'Seg. Odontológica',
-        'AMB': 'Seg. Ambulatorial'
+        'AMB': 'Seg. Ambulatorial',
+        'CAP_TULO': 'CAPÍTULO', 
     })
 
 def drop_unnecessary_columns(df: pd.DataFrame) -> pd.DataFrame:
