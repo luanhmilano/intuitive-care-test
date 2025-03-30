@@ -1,12 +1,15 @@
 import os
 import zipfile
 import requests
+from dotenv import load_dotenv
 from typing import Optional
 from ..utils.create_directory import create_directory
 from ..utils.validate_url import validate_url
 from ..utils.generate_zip_name import generate_zip_name
 from .fetch_page_content import fetch_page_content
 from .extract_pdf_links import extract_pdf_links
+
+load_dotenv()
 
 def download_pdfs_and_zip(url: Optional[str] = None, output_zip: Optional[str] = None) -> Optional[str]:
     """Função principal do módulo"""
@@ -15,7 +18,7 @@ def download_pdfs_and_zip(url: Optional[str] = None, output_zip: Optional[str] =
         zip_dir = os.path.join(base_dir, '../../data/raw')
         create_directory(zip_dir)
 
-        target_url = url or os.getenv('TARGET_URL')
+        target_url = url or os.getenv('TARGET_URL').removeprefix('"').removesuffix('"\'')
         if not target_url:
             raise ValueError('URL não configurada')
         validate_url(target_url)
